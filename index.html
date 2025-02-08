@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Account Filter</title>
+
+    <style>
+      /* General Styles */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        padding: 20px;
+        text-align: center;
+      }
+
+      /* Filter Box */
+      .filter-box {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        width: 90%;
+        max-width: 500px;
+        margin: 0 auto;
+      }
+
+      h2 {
+        color: #333;
+        margin-bottom: 15px;
+      }
+
+      .filters label {
+        display: block;
+        margin: 5px 0;
+        font-size: 16px;
+      }
+
+      /* Buttons */
+      button {
+        background: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        cursor: pointer;
+        font-size: 16px;
+        border-radius: 5px;
+        transition: 0.3s;
+      }
+      button:hover {
+        background: #0056b3;
+      }
+
+      /* Products */
+      #productList {
+        margin-top: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .product {
+        background: white;
+        padding: 15px;
+        margin: 10px;
+        border-radius: 8px;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        transition: 0.3s;
+        width: 90%;
+        max-width: 250px;
+        text-align: center;
+      }
+
+      .product:hover {
+        transform: translateY(-5px);
+      }
+
+      .product img {
+        width: 100%;
+        max-height: 150px;
+        border-radius: 5px;
+        object-fit: cover;
+      }
+
+      .product p {
+        font-size: 14px;
+        color: #555;
+      }
+
+      .product img {
+    width: 100%;
+    height: 150px;
+    object-fit: contain; /* Show the whole image, but may leave empty space */
+    background-color: #f0f0f0; /* Optional: Fills gaps with a background color */
+}
+
+      /* Responsive Design */
+      @media (max-width: 600px) {
+        .filter-box {
+          width: 100%;
+          padding: 15px;
+        }
+        .product {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="filter-box">
+      <h2>Account Filter</h2>
+
+      <div class="filters">
+        <!-- Account Type Checkboxes (Pre-Checked) -->
+        <label>
+          <input
+            type="checkbox"
+            class="filter"
+            data-filter="account"
+            value="T5"
+            checked
+          />
+          T5 Account
+        </label>
+        <label>
+          <input
+            type="checkbox"
+            class="filter"
+            data-filter="account"
+            value="T4"
+            checked
+          />
+          T4 Account
+        </label>
+
+        <br />
+
+        <!-- Money Range Dropdown -->
+        <label
+          >Money Range:
+          <select id="moneyRange">
+            <option value="all">All</option>
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+          </select>
+        </label>
+
+        <br /><br />
+
+        <!-- New Checkboxes (Pre-Checked) -->
+        <label>
+          <input
+            type="checkbox"
+            class="filter"
+            data-filter="type"
+            value="Rally Lead"
+            checked
+          />
+          Rally Lead
+        </label>
+        <label>
+          <input
+            type="checkbox"
+            class="filter"
+            data-filter="type"
+            value="Min Lead"
+            checked
+          />
+          Min Lead
+        </label>
+        <label>
+          <input
+            type="checkbox"
+            class="filter"
+            data-filter="type"
+            value="Rally Trap"
+            checked
+          />
+          Rally Trap
+        </label>
+        <label>
+          <input
+            type="checkbox"
+            class="filter"
+            data-filter="type"
+            value="Solo Trap"
+            checked
+          />
+          Solo Trap
+        </label>
+
+        <br /><br />
+
+        <button onclick="filterProducts()">Apply Filters</button>
+      </div>
+    </div>
+
+    <div id="productList"></div>
+
+    <script>
+      // Sample product data (Includes Images & Extra Details)
+      const products = [
+        {
+          id: 1,
+          name: "T5 Warrior",
+          account: "T5",
+          money: "high",
+          type: "Rally Lead",
+          power: "1.8B",
+          kingdom: "Kingdom OPEN",
+          image: "One.jpeg",
+          description: "1550+mm 1145-1152-1143 Blast NO forts 8 Champs 3+1 Cups 75 Castle Stars 23 Blessed 19 Paid Heros Max Farms Etc",
+        },
+        {
+          id: 2,
+          name: "T5 Warrior",
+          account: "T5",
+          money: "high",
+          type: "Min Lead",
+          power: "1.9B",
+          kingdom: "Kingdom OPEN",
+          image: "two.jpeg",
+          description: "Well-balanced T4 account with legendary gear. T5/ Elite 823/863/827 attack 37M Trops 81 Scroll 250$+ MM",
+        },
+        {
+          id: 3,
+          name: "Rally Trap",
+          account: "T5",
+          money: "Medium",
+          type: "Rally Trap",
+          power: "1.4B",
+          kingdom: "Kingdom 1234",
+          image: "Three.jpeg",
+          description: "Perfect for rally trapping with solid defense.",
+        },
+      ];
+
+      // Function to display products
+      function displayProducts(filteredProducts) {
+        const productList = document.getElementById("productList");
+        productList.innerHTML = ""; // Clear previous products
+
+        filteredProducts.forEach((product) => {
+          const productDiv = document.createElement("div");
+          productDiv.className = "product";
+          productDiv.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p><strong>Account:</strong> ${product.account}</p>
+                    <p><strong>Money:</strong> ${product.money}</p>
+                    <p><strong>Type:</strong> ${product.type}</p>
+                    <p><strong>Power:</strong> ${product.power}</p>
+                    <p><strong>Kingdom:</strong> ${product.kingdom}</p>
+                    <p>${product.description}</p>
+                `;
+          productList.appendChild(productDiv);
+        });
+      }
+
+      // Function to filter products based on user selections
+      function filterProducts() {
+        // Get selected account types
+        const selectedAccounts = Array.from(
+          document.querySelectorAll(".filter[data-filter='account']:checked")
+        ).map((el) => el.value);
+        const moneyRange = document.getElementById("moneyRange").value;
+        const selectedTypes = Array.from(
+          document.querySelectorAll(".filter[data-filter='type']:checked")
+        ).map((el) => el.value);
+
+        // Filter the products based on selections
+        const filtered = products.filter((product) => {
+          return (
+            selectedAccounts.includes(product.account) &&
+            (moneyRange === "all" || product.money === moneyRange) &&
+            selectedTypes.includes(product.type)
+          );
+        });
+
+        displayProducts(filtered);
+      }
+
+      // Initially display all products when the page loads
+      displayProducts(products);
+    </script>
+  </body>
+</html>
