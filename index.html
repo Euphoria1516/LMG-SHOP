@@ -88,11 +88,11 @@
       }
 
       .product img {
-    width: 100%;
-    height: 150px;
-    object-fit: contain; /* Show the whole image, but may leave empty space */
-    background-color: #f0f0f0; /* Optional: Fills gaps with a background color */
-}
+        width: 100%;
+        height: 150px;
+        object-fit: contain; /* Show the whole image, but may leave empty space */
+        background-color: #f0f0f0; /* Optional: Fills gaps with a background color */
+      }
 
       /* Responsive Design */
       @media (max-width: 600px) {
@@ -189,6 +189,36 @@
           />
           Solo Trap
         </label>
+        <label>
+          <input
+            type="checkbox"
+            class="filter"
+            data-filter="type"
+            value="T5 Filler Account"
+            checked
+          />
+          T5 Filler Account
+        </label>
+        <label>
+          <input
+            type="checkbox"
+            class="filter"
+            data-filter="type"
+            value="T4 Filler Account"
+            checked
+          />
+          T4 Filler Account
+        </label>
+        <label>
+          <input
+            type="checkbox"
+            class="filter"
+            data-filter="type"
+            value="Snow Beast Bank"
+            checked
+          />
+          Snow Beast Bank
+        </label>
 
         <br /><br />
 
@@ -203,14 +233,18 @@
       const products = [
         {
           id: 1,
-          name: "T5 Warrior",
+          name: "T5 Champion",
           account: "T5",
           money: "high",
           type: "Rally Lead",
           power: "1.8B",
-          kingdom: "Kingdom OPEN",
+          kingdom: "OPEN",
           image: "One.jpeg",
-          description: "1550+mm 1145-1152-1143 Blast NO forts 8 Champs 3+1 Cups 75 Castle Stars 23 Blessed 19 Paid Heros Max Farms Etc",
+          price: "150$+ MM",
+          dealer: "Harsh",
+          number: "LMG 201",
+          description:
+            "1550+mm 1145-1152-1143 Blast NO forts 8 Champs 3+1 Cups 75 Castle Stars 23 Blessed 19 Paid Heros Max Farms Etc",
         },
         {
           id: 2,
@@ -221,18 +255,131 @@
           power: "1.9B",
           kingdom: "Kingdom OPEN",
           image: "two.jpeg",
-          description: "Well-balanced T4 account with legendary gear. T5/ Elite 823/863/827 attack 37M Trops 81 Scroll 250$+ MM",
+          description:
+            "Well-balanced T4 account with legendary gear. T5/ Elite 823/863/827 attack 37M Trops 81 Scroll 250$+ MM",
         },
         {
           id: 3,
           name: "Rally Trap",
           account: "T5",
-          money: "Medium",
+          money: "medium",
           type: "Rally Trap",
           power: "1.4B",
           kingdom: "Kingdom 1234",
           image: "Three.jpeg",
           description: "Perfect for rally trapping with solid defense.",
+        },
+        {
+          id: 4,
+          name: "Restricted Kingdom T4",
+          account: "T4",
+          money: "medium",
+          type: "Rally Trap",
+          power: "590M ",
+          kingdom: "1420",
+          image: "DMO1.jpeg",
+          price: "40$+ MM",
+          dealer: "Aarush",
+          number: "DMO 01",
+          description: "24M Trops Pack 4 Almost Done ",
+        },
+        {
+          id: 5,
+          name: "Cheap T5 Account",
+          account: "T5",
+          money: "medium",
+          type: "Rally Trap",
+          power: "1.1B",
+          kingdom: "Open",
+          image: "DMO2.jpeg",
+          price: "35$ + MM",
+          dealer: "Murtaz",
+          number: "DMO 02",
+          description: "Epic Gold Gears Merge Relam Active",
+        },
+        {
+          id: 6,
+          name: "T5 Snow Beast Bank",
+          account: "T5",
+          money: "low",
+          type: "Snow Beast Bank",
+          power: "610M",
+          kingdom: "Open",
+          image: "DMO3.jpeg",
+          price: "35$ + MM",
+          dealer: "Murtaz",
+          number: "DMO 03",
+          description: "Low Might Snow Beast And T5 Account",
+        },
+        {
+          id: 7,
+          name: "Best T5 Account",
+          account: "T5",
+          money: "high",
+          type: "Min Lead",
+          power: "973M",
+          kingdom: "Open",
+          image: "DMO4.jpeg",
+          price: "65$ + MM",
+          dealer: "Murtaz",
+          number: "DMO 04",
+          description: "T5 account + Elite and Familiar Slot 4",
+        },
+        {
+          id: 8,
+          name: "Restricted Kingdom",
+          account: "T5",
+          money: "high",
+          type: "Min Lead",
+          power: "750M",
+          kingdom: "1439",
+          image: "DMO5.jpeg",
+          price: "220$+ MM",
+          dealer: "Murtaz",
+          number: "DMO 05",
+          description: "2 Gold Cup 700 each Blase",
+        },
+        {
+          id: 9,
+          name: "Rally Trap",
+          account: "T4",
+          money: "low",
+          type: "Rally Trap",
+          power: "798M",
+          kingdom: "Open",
+          image: "DMO6.jpeg",
+          price: "50$ + MM",
+          dealer: "Murtaz",
+          number: "DMO 06",
+          description: "450% Mix Attck All purple and 2 Gold Gears",
+        },
+        {
+          id: 10,
+          name: "Heavy Filler T5",
+          account: "T5",
+          money: "high",
+          type: "T5 Filler Account",
+          power: "2.3B",
+          kingdom: "Open",
+          image: "DMO7.jpeg",
+          price: "135$ + MM",
+          dealer: "Murtaz",
+          number: "DMO 07",
+          description: "1.6M gems and T5+ Elite ",
+        },
+        {
+          id: 11,
+          name: "Rally Lead ",
+          account: "T5",
+          money: "high",
+          type: "Rally Lead",
+          power: "1.5b",
+          kingdom: "Open",
+          image: "DMO8.jpeg",
+          price: "850$ + MM",
+          dealer: "Murtaz",
+          number: "DMO 08",
+          description: "3+1 Cups 8 P2P FAMS 61 Castle Star",
         },
       ];
 
@@ -248,10 +395,13 @@
                     <img src="${product.image}" alt="${product.name}">
                     <h3>${product.name}</h3>
                     <p><strong>Account:</strong> ${product.account}</p>
+                    <p><strong>Dealer:</strong> ${product.dealer}</p>
+                    <p><strong>NO:</strong> ${product.number}</p>
                     <p><strong>Money:</strong> ${product.money}</p>
-                    <p><strong>Type:</strong> ${product.type}</p>
                     <p><strong>Power:</strong> ${product.power}</p>
-                    <p><strong>Kingdom:</strong> ${product.kingdom}</p>
+                    <h5><strong>Kingdom:</strong> ${product.kingdom}</h5>
+                    <b><strong>Price:</strong> ${product.price}</b>
+                    <p><strong>Type:</strong> ${product.type}</p>
                     <p>${product.description}</p>
                 `;
           productList.appendChild(productDiv);
